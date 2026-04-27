@@ -1,0 +1,107 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Build system
+# ─────────────────────────────────────────────────────────────────────────────
+[build-system]
+requires      = ["hatchling"]
+build-backend = "hatchling.build"
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Project metadata  (PEP 621)
+# ─────────────────────────────────────────────────────────────────────────────
+[project]
+name            = "pycoderadar"
+version         = "1.2.0"
+description     = "Extended Python Code Map & Refactoring Radar — a PySide6 GUI for AST analysis, anti-pattern detection, and active linting (Ruff / Radon / Mypy)."
+readme          = "README.md"
+requires-python = ">=3.10"
+license         = "Apache-2.0"
+license-files   = ["LICENSE"]
+authors         = [{ name = "opticsWolf" }]
+keywords        = [
+    "static-analysis", "code-quality", "ast", "refactoring",
+    "linter", "ruff", "mypy", "radon", "qt", "pyside6", "gui",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: X11 Applications :: Qt",
+    "Environment :: Win32 (MS Windows)",
+    "Environment :: MacOS X",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Software Development :: Quality Assurance",
+    "Topic :: Software Development :: Code Generators",
+]
+
+# ── Hard dependency ──────────────────────────────────────────────────────────
+dependencies = [
+    "PySide6>=6.5,<7",
+]
+
+# ── Optional dependencies ────────────────────────────────────────────────────
+# The external analysers are detected at runtime via shutil.which(). The app
+# works with none, any, or all of them — pick what you want.
+[project.optional-dependencies]
+ruff  = ["ruff>=0.4"]
+radon = ["radon>=6.0"]
+mypy  = ["mypy>=1.8"]
+# Convenience: install everything in one go.
+full  = [
+    "ruff>=0.4",
+    "radon>=6.0",
+    "mypy>=1.8",
+]
+# For contributors building / testing the package itself.
+dev = [
+    "ruff>=0.4",
+    "radon>=6.0",
+    "mypy>=1.8",
+    "build>=1.0",
+    "twine>=4.0",
+]
+
+# ── Console / GUI entry points ───────────────────────────────────────────────
+# After `pip install .` the binary `pycoderadar` is on PATH.
+[project.scripts]
+pycoderadar = "pycoderadar.app:main"
+
+# `gui-scripts` on Windows produces a .exe that doesn't open a console window.
+[project.gui-scripts]
+pycoderadar-gui = "pycoderadar.app:main"
+
+# ── URLs (update to match your GitHub repo) ──────────────────────────────────
+[project.urls]
+Homepage = "https://github.com/yourname/pycoderadar"
+Source   = "https://github.com/yourname/pycoderadar"
+Issues   = "https://github.com/yourname/pycoderadar/issues"
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Hatchling build configuration
+# ─────────────────────────────────────────────────────────────────────────────
+# Hatchling includes every file in the package directory by default, so the
+# bundled icon.svg ships in both wheel and sdist with no extra config.
+[tool.hatch.build.targets.wheel]
+packages = ["pycoderadar"]
+
+# Strict allowlist: only the listed paths end up in the sdist tarball.
+# Without this, Hatchling falls back to "everything not gitignored", which
+# can sweep in unrelated workspace files.
+[tool.hatch.build.targets.sdist]
+only-include = [
+    "pycoderadar",
+    "PyCodeRadar.py",
+    "README.md",
+    "LICENSE",
+    "pyproject.toml",
+    "requirements.txt",
+    "requirements-tools.txt",
+]

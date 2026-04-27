@@ -1,8 +1,10 @@
-# PyCodeRadar
+# PyCodeRadar — runtime requirements (minimum to launch the GUI).
 #
 # Install with:  pip install -r requirements.txt
 #
+# The optional analysers (Ruff / Radon / Mypy) are NOT pulled in here —
+# the app degrades gracefully when they're missing. To get full features,
+# use `requirements-tools.txt` instead, or `pip install pycoderadar[full]`
+# if installing from pyproject.toml.
+
 PySide6>=6.5,<7
-ruff>=0.4
-radon>=6.0
-mypy>=1.8

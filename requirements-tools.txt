@@ -1,0 +1,14 @@
+# PyCodeRadar — full feature set (recommended).
+#
+# Includes the GUI plus the three external analysers PyCodeRadar can drive:
+#   • Ruff   — deep smell detection, --fix, --format
+#   • Radon  — Maintainability Index (MI score)
+#   • Mypy   — static type checking
+#
+# Install with:  pip install -r requirements-tools.txt
+
+-r requirements.txt
+
+ruff>=0.4
+radon>=6.0
+mypy>=1.8
