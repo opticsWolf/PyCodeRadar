@@ -1,5 +1,6 @@
 
 <img width="256" height="256" alt="grafik" src="https://github.com/user-attachments/assets/db22026e-1eb3-4d8e-9298-684e9118316d" /> 
+
 # PyCodeRadar
 
 ## How to run
