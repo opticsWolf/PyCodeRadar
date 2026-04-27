@@ -1,0 +1,8 @@
+# PyCodeRadar
+#
+# Install with:  pip install -r requirements.txt
+#
+PySide6>=6.5,<7
+ruff>=0.4
+radon>=6.0
+mypy>=1.8
