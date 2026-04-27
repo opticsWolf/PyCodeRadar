@@ -3,6 +3,30 @@
 
 # PyCodeRadar
 
+## Installation
+
+Requires Python 3.10 or newer.
+
+```bash
+# Bare minimum (just the GUI):
+pip install -r requirements.txt
+
+# Full features (GUI + Ruff + Radon + Mypy):
+pip install -r requirements-tools.txt
+
+# As a proper package (uses pyproject.toml):
+pip install .                       # core only
+pip install ".[full]"               # core + all three analysers
+pip install ".[ruff]"               # core + Ruff only
+```
+
+After `pip install .`, two console scripts are on `PATH`:
+
+```bash
+pycoderadar          # standard
+pycoderadar-gui      # Windows: no console window
+```
+
 ## How to run
 
 Either of these still works:
